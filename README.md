@@ -42,7 +42,7 @@ local app = lib.client:new(self, ESX)
 end
 
 function app:onEnter(key, data, currentDistance)
-  print(key, json.encode(data, { indent = true }), currentDistance) -- Output: test-coords { coords: vector3(...), lodDist: ..., interactDist: ... } 
+  print(key, json.encode(data, { indent = true }), currentDistance) -- Output: test-coords { coords: vector3(...), lodDist: ..., interactDist: ... } 53.35...
   activeCoords[key] = true
 end
 
