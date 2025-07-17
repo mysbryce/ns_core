@@ -168,6 +168,8 @@ function lib.client:startProgress(object, async)
     return
   end
 
+  if object.canCancel == nil then object.canCancel = false end
+
   if async == nil then async = true end
 
   self.progress.worker = true
@@ -237,8 +239,10 @@ function lib.client:startProgress(object, async)
       end
     end,
     function()
-      if IsControlJustPressed(0, 73) or IsDisabledControlJustPressed(0, 73) then
-        TriggerEvent('mythic_progbar:client:cancel')
+      if object.canCancel then
+        if IsControlJustPressed(0, 73) or IsDisabledControlJustPressed(0, 73) then
+          TriggerEvent('mythic_progbar:client:cancel')
+        end
       end
     end,
     function(cancelled)

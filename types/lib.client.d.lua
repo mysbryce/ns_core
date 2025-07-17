@@ -33,6 +33,7 @@
 --- @field name string
 --- @field label string
 --- @field duration integer
+--- @field canCancel boolean
 --- @field canTakeDamage boolean
 --- @field animation { clip: string, name: string, flag: integer }?
 --- @field prop { model: string, bone: integer, coords: vector3, rotation: vector3 }?
