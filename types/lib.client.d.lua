@@ -69,3 +69,7 @@
 --- | 'info'
 --- | 'warn'
 --- | 'error'
+
+--- @alias NS.StateFallbackGet fun(): any
+--- @alias NS.StateFallbackSet fun(newValue: any)
+--- @alias NS.StateCallback fun(previousValue: any, newValue: any)

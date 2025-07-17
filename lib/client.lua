@@ -1,3 +1,4 @@
+local appData = { stateId = 0, stateCallback = {}, states = {} }
 --- @diagnostic disable-next-line: lowercase-global
 lib = lib or {}
 
@@ -303,6 +304,31 @@ function lib.client:setDebugMode(toggle)
   if toggle == nil then toggle = true end
 
   self.debugMode = toggle
+end
+
+--- @param value any
+--- @param fn NS.StateCallback
+--- @return NS.StateFallbackGet, NS.StateFallbackSet
+function lib.client:createState(value, fn)
+  if type(value) == 'nil' or type(fn) ~= 'function' then
+    error('Error type of value or function invalid!')
+  end
+
+  local id = appData.stateId + 1
+  appData.stateId = id
+
+  appData.states[id] = value
+  appData.statesCallback[id] = fn
+
+  local getter = function()
+    return appData.states[id]
+  end
+
+  local setter = function(newValue)
+    appData.states[id] = newValue
+  end
+
+  return getter, setter
 end
 
 --- @param tbl any[]
