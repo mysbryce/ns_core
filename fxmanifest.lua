@@ -9,19 +9,19 @@ lua54 'yes'
 use_experimental_fxv2_oal 'yes'
 
 shared_scripts {
-    '@ox_lib/init.lua'
+  '@ox_lib/init.lua'
 }
 
 server_scripts {
-    'server/init.lua',
-    'server/player.lua'
+  'server/init.lua',
+  'server/player.lua'
 }
 
 dependecies {
-    'es_extended',
-    'ox_lib'
+  'es_extended',
+  'ox_lib'
 }
 
 files {
-    'lib/client.lua'
+  'lib/client.lua'
 }

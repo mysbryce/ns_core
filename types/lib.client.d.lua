@@ -1,0 +1,46 @@
+--- @meta
+
+--- @class NS.Core.TargetCoords
+--- @field coords vector3
+--- @field lodDist number
+--- @field interactDist number
+
+--- @class NS.Client
+--- @field onEnter? fun(self: NS.Client, key: string, targetData: NS.Core.TargetCoords, currentDistance: number)
+--- @field onExit? fun(self: NS.Client, key: string)
+--- @field onPlayerLoaded fun(self: NS.Client, esx: ESXObject)?
+--- @field esx ESXObject?
+--- @field isDead boolean
+--- @field targetCoords table<string, NS.Core.TargetCoords>
+--- @field nearestTarget string?
+--- @field nearestDist number?
+--- @field inCoords table<string, boolean>
+--- @field cache table<string, unknown>
+--- @field progress { worker: boolean, workerName: string?, workerTakeDamage: boolean }
+--- @field [string] any
+--- @field new fun(self: NS.Client, esx: ESXObject)?
+--- @field addCoords fun(self: NS.Client, name: string, target: vector3, lodDist: number, interactDist: number)
+--- @field removeCoords fun(self: NS.Client, name: string)
+--- @field getNearestCoords fun(self: NS.Client, minimumDist: number?): string?, NS.Core.TargetCoords?, number?
+--- @field getItem fun(self: NS.Client, name: string, validate: boolean?): ESXItem?
+--- @field getAccount fun(self: NS.Client, name: string, validate: boolean?): ESXPlayerAccount?
+--- @field onKey fun(self: NS.Client, mode: 'Pressed' | 'JustPressed' | 'Released' | 'JustReleased', key: integer, allowDisable: boolean?)
+--- @field handleNils fun(self: NS.Client, ...: any): boolean
+--- @field startProgress fun(self: NS.Client, object: NS.ProgressBar.Object, async: boolean?): boolean?
+--- @field start fun(self: NS.Client, async: boolean?)
+
+--- @class NS.ProgressBar.Object
+--- @field name string
+--- @field label string
+--- @field duration integer
+--- @field canTakeDamage boolean
+--- @field animation { clip: string, name: string, flag: integer }?
+--- @field prop { model: string, bone: integer, coords: vector3, rotation: vector3 }?
+--- @field onCompleted fun()?
+--- @field onCancelled fun()?
+--- @field addons NS.ProgressBar.Addon?
+---
+--- @class NS.ProgressBar.Addon
+--- @field useWhileDead boolean?
+--- @field canCancel boolean?
+--- @field controlDisables { disableMovement: boolean, disableCarMovement: boolean, disableMouse: boolean, disableCombat: boolean }?
