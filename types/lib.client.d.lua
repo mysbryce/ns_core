@@ -30,6 +30,7 @@
 --- @field startProgress fun(self: NS.Client, object: NS.ProgressBar.Object, async: boolean?): boolean?
 --- @field start fun(self: NS.Client, async: boolean?)
 --- @field setDebugMode fun(self: NS.Client, toggle: boolean?)
+--- @field array fun(self: NS.Client, tbl: any[])
 
 --- @class NS.ProgressBar.Object
 --- @field name string
@@ -47,6 +48,21 @@
 --- @field useWhileDead boolean?
 --- @field canCancel boolean?
 --- @field controlDisables { disableMovement: boolean, disableCarMovement: boolean, disableMouse: boolean, disableCombat: boolean }?
+
+--- @class NS.Array
+--- @field len fun(self: NS.Array): integer
+--- @field push fun(self: NS.Array, value: any)
+--- @field pop fun(self: NS.Array): any
+--- @field shift fun(self: NS.Array): any
+--- @field unshift fun(self: NS.Array, value: any)
+--- @field forEach fun(self: NS.Array, callback: fun(value: any, index: integer))
+--- @field map fun(self: NS.Array, callback: fun(value: any, index: integer): any): NS.Array
+--- @field filter fun(self: NS.Array, callback: fun(value: any, index: integer): boolean): NS.Array
+--- @field find fun(self: NS.Array, callback: fun(value: any, index: integer): boolean): any
+--- @field includes fun(self: NS.Array, value: any): boolean
+--- @field indexOf fun(self: NS.Array, value: any): integer
+--- @field toTable fun(self: NS.Array): any[]
+--- @field print fun(self: NS.Array)
 
 --- @alias NS.Debug.Type
 --- | 'success'

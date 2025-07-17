@@ -305,6 +305,151 @@ function lib.client:setDebugMode(toggle)
   self.debugMode = toggle
 end
 
+--- @param tbl any[]
+--- @return NS.Array
+function lib.client:array(tbl)
+  if type(tbl) ~= 'table' then
+    error('Error type of table invalid!')
+  end
+
+  local arr = {}
+
+  for i, v in ipairs(tbl) do
+    arr[i] = v
+  end
+
+  local arrPrototype = {}
+
+  function arrPrototype:len()
+    return #arr
+  end
+
+  function arrPrototype:push(value)
+    table.insert(arr, value)
+  end
+
+  function arrPrototype:pop()
+    return table.remove(arr)
+  end
+
+  function arrPrototype:shift()
+    return table.remove(arr, 1)
+  end
+
+  function arrPrototype:unshift(value)
+    table.insert(arr, 1, value)
+  end
+
+  function arrPrototype:forEach(callback)
+    for i, v in ipairs(arr) do
+      callback(v, i)
+    end
+  end
+
+  function arrPrototype:map(callback)
+    local result = {}
+    for i, v in ipairs(arr) do
+      result[i] = callback(v, i)
+    end
+
+    return self:array(result)
+  end
+
+  function arrPrototype:filter(callback)
+    local result = {}
+    for i, v in ipairs(arr) do
+      if callback(v, i) then
+        table.insert(result, v)
+      end
+    end
+
+    return self:array(result)
+  end
+
+  function arrPrototype:find(callback)
+    for i, v in ipairs(arr) do
+      if callback(v, i) then
+        return v
+      end
+    end
+
+    return nil
+  end
+
+  function arrPrototype:includes(value)
+    for _, v in ipairs(arr) do
+      if v == value then
+        return true
+      end
+    end
+
+    return false
+  end
+
+  function arrPrototype:indexOf(value)
+    for i, v in ipairs(arr) do
+      if v == value then
+        return i
+      end
+    end
+
+    return -1
+  end
+
+  function arrPrototype:toTable()
+    local copy = {}
+    for i, v in ipairs(arr) do
+      copy[i] = v
+    end
+
+    return copy
+  end
+
+  function arrPrototype:print()
+    for i, v in ipairs(arr) do
+      print(i, v)
+    end
+  end
+
+  local wrapper = {}
+
+  return setmetatable(wrapper, {
+    __index = function(_, key)
+      if type(key) == 'number' then
+        return arr[key]
+      elseif arrPrototype[key] then
+        return function(_, ...)
+          return arrPrototype[key](arrPrototype, ...)
+        end
+      end
+    end,
+
+    __newindex = function(_, key, value)
+      if type(key) == 'number' then
+        arr[key] = value
+      else
+        rawset(wrapper, key, value)
+      end
+    end,
+
+    __len = function()
+      return #arr
+    end,
+
+    __tostring = function()
+      return '[ ' .. table.concat(arr, ', ') .. ' ]'
+    end,
+
+    __pairs = function()
+      return pairs(arr)
+    end,
+
+    __ipairs = function()
+      return ipairs(arr)
+    end
+  })
+end
+
 --- @param async boolean?
 function lib.client:start(async)
   if lib.callback == nil then
