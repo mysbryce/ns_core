@@ -9,7 +9,9 @@ function lib.client:new(onPlayerLoaded)
   local data = {}
 
   setmetatable(data, self)
+
   self.__index = self
+  self.debugMode = false
   self.onPlayerLoaded = onPlayerLoaded
 
   --- ESX
@@ -274,6 +276,33 @@ function lib.client:startProgress(object, async)
     local result = Citizen.Await(pm)
     return result
   end
+end
+
+--- @param prefix NS.Debug.Type
+--- @param text string
+function lib.client:debug(prefix, text)
+  if self.debugMode then
+    local color
+
+    if prefix == 'success' then
+      color = '^2'
+    elseif prefix == 'info' then
+      color = '^5'
+    elseif prefix == 'warn' then
+      color = '^3'
+    elseif prefix == 'error' then
+      color = '^1'
+    end
+
+    print(('%s[%s]^7 %s^7'):format(color, string.upper(prefix), text))
+  end
+end
+
+--- @param toggle boolean?
+function lib.client:setDebugMode(toggle)
+  if toggle == nil then toggle = true end
+
+  self.debugMode = toggle
 end
 
 --- @param async boolean?

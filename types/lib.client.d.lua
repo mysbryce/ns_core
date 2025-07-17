@@ -11,6 +11,7 @@
 --- @field onPlayerLoaded fun(self: NS.Client, esx: ESXObject)?
 --- @field esx ESXObject?
 --- @field isDead boolean
+--- @field debugMode boolean
 --- @field targetCoords table<string, NS.Core.TargetCoords>
 --- @field nearestTarget string?
 --- @field nearestDist number?
@@ -28,6 +29,7 @@
 --- @field handleNils fun(self: NS.Client, ...: any): boolean
 --- @field startProgress fun(self: NS.Client, object: NS.ProgressBar.Object, async: boolean?): boolean?
 --- @field start fun(self: NS.Client, async: boolean?)
+--- @field setDebugMode fun(self: NS.Client, toggle: boolean?)
 
 --- @class NS.ProgressBar.Object
 --- @field name string
@@ -40,8 +42,14 @@
 --- @field onCompleted fun()?
 --- @field onCancelled fun()?
 --- @field addons NS.ProgressBar.Addon?
----
+
 --- @class NS.ProgressBar.Addon
 --- @field useWhileDead boolean?
 --- @field canCancel boolean?
 --- @field controlDisables { disableMovement: boolean, disableCarMovement: boolean, disableMouse: boolean, disableCombat: boolean }?
+
+--- @alias NS.Debug.Type
+--- | 'success'
+--- | 'info'
+--- | 'warn'
+--- | 'error'
