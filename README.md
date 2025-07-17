@@ -54,6 +54,8 @@ end
 app:start()
 ```
 
+and remember that you need to start `es_extended` and `ox_lib` before `ns_core`
+
 ### Dependecies
 - mythic_progbar (***optional**) (if you want to use progress bar function)
 
