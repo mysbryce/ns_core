@@ -59,6 +59,11 @@ and remember that you need to start `es_extended` and `ox_lib` before `ns_core`
 ### Dependecies
 - mythic_progbar (***optional**) (if you want to use progress bar function)
 
+### VSCode Extensions
+- [Lua (Lua Language Server coded by Lua)](https://marketplace.visualstudio.com/items?itemName=sumneko.lua)
+- [CfxLua (FiveM/RedM) IntelliseSense](https://marketplace.visualstudio.com/items?itemName=overextended.cfxlua-vscode)
+- [ESX IntelliSense (FiveM)](https://marketplace.visualstudio.com/items?itemName=ardelanyamanel.fivem-esx-intellisense)
+
 ### Requirements
 - es_extended
 - ox_lib
