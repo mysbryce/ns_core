@@ -24,6 +24,7 @@ lib.server.event = {}
 --- @param isNet boolean?
 function lib.server.event:register(name, handler, isNet)
   assertType(1, name, 'string')
+  assertType(2, handler, 'function')
 
   if isNet == nil then isNet = false end
 
