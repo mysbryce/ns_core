@@ -151,12 +151,10 @@ function lib.client:onKey(mode, key, allowDisable)
   end
 end
 
---- @param ... any
+--- @param value any?
 --- @return boolean
-function lib.client:handleNils(...)
-  for _, v in ipairs(...) do
-    if v == nil then return false end
-  end
+function lib.client:handleNils(value)
+  if value == nil then return false end
 
   return true
 end
